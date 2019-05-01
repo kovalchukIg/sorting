@@ -13,6 +13,24 @@ export class SortedComponent implements OnInit {
   ngOnInit() {
   console.log(this.divs.divs);
   }
+  selection(arr) {
+      for (let i = 0; i < arr.length; i++) {
+        let min = i;
+        for (let j = i + 1; j < arr.length; j++) {
+          if (arr[j] < arr[min]) {
+            min = j;
+          }
+        }
+        setTimeout(() => {
+          const temp = arr[i];
+          arr[i] = arr[min];
+          arr[min] = temp;
+        }, 1000);
+      }
+      console.log(arr);
+      return arr;
+  }
+
   bubble(arr) {
       for (let i = 0; i < arr.length; i++) {
         for (let j = 0; j < arr.length; j++) {
@@ -25,24 +43,7 @@ export class SortedComponent implements OnInit {
           }
         }
       }
-    return arr;
-  }
-  selection(arr) {
-    for (let i = 0; i < arr.length; i++) {
-      let min = i;
-        for (let j = i + 1; j < arr.length; j++) {
-          if (arr[j] < arr[min]) {
-            min = j;
-          }
-        }
-      setInterval(() => {
-        const temp = arr[i];
-        arr[i] = arr[min];
-        arr[min] = temp;
-      }, 1000);
-    }
-    console.log(arr);
-    return arr;
+      return arr;
   }
   random(arr) {
   arr.sort((a, b) => 0.5 - Math.random());
