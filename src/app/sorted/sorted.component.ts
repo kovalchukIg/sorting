@@ -13,9 +13,48 @@ export class SortedComponent implements OnInit {
   ngOnInit() {
   console.log(this.divs.divs);
   }
-  selection(arr) {
+ selection(arr) {
       for (let i = 0; i < arr.length; i++) {
         let min = i;
+        for (let j = i + 1; j < arr.length; j++) {
+          if (arr[j] < arr[min]) {
+            min = j;
+          }
+        }
+        const temp = arr[i];
+        arr[i] = arr[min];
+        arr[min] = temp;
+      }
+      console.log(arr);
+      return arr;
+  }
+ /*
+  при кожному кліку сортцє по одному елементу
+  selection(arr) {
+    for (let i = 0; i < arr.length; i++) {
+      let min = i;
+      for (let j = i + 1; j < arr.length; j++) {
+        if (arr[j] < arr[min]) {
+          min = j;
+        }
+      }
+      setTimeout(() => {
+        const temp = arr[i];
+        arr[i] = arr[min];
+        arr[min] = temp;
+      }, 1000);
+    }
+    console.log(arr);
+    return arr;
+  }
+  */
+
+ /*
+  неправильно робить
+  selection(arr) {
+    for (let i = 0; i < arr.length; i++) {
+      let min = i;
+      setInterval( () => {
         for (let j = i + 1; j < arr.length; j++) {
           if (arr[j] < arr[min]) {
             min = j;
@@ -26,20 +65,19 @@ export class SortedComponent implements OnInit {
           arr[i] = arr[min];
           arr[min] = temp;
         }, 1000);
-      }
-      console.log(arr);
-      return arr;
+      }, 1000);
+    }
+    console.log(arr);
+    return arr;
   }
-
+*/
   bubble(arr) {
       for (let i = 0; i < arr.length; i++) {
         for (let j = 0; j < arr.length; j++) {
           if (arr[j] > arr[j + 1]) {
-            setInterval(() => {
               const tmp = arr[j];
               arr[j] = arr[j + 1];
               arr[j + 1] = tmp;
-            }, 1000);
           }
         }
       }
